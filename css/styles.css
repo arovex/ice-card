@@ -279,6 +279,10 @@ a { color: inherit; }
     gap: 4px;
     margin: 0;
     padding: 10px;
+    max-height: calc(100vh - var(--header-h) - 24px);
+    max-height: calc(100dvh - var(--header-h) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 20px;
@@ -413,7 +417,6 @@ a { color: inherit; }
   font-style: normal;
   color: var(--accent);
   position: relative;
-  white-space: nowrap;
 }
 .hero .lead { margin-bottom: 26px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
@@ -1239,7 +1242,7 @@ textarea.input {
 .toc a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
@@ -1512,6 +1515,12 @@ textarea.input {
 [dir="rtl"] .brand-mark svg { transform: scaleX(-1); }
 
 /* Narrow tweaks */
+@media (max-width: 859px) {
+  .lang-select select { min-height: 44px; font-size: 16px; }
+  .file-btn input[type="file"] { font-size: 16px; }
+  .radio-pill { min-height: 44px; }
+}
+
 @media (max-width: 420px) {
   .hero h1 { font-size: clamp(32px, 10vw, 44px); }
   .hero-actions .btn { width: 100%; }
@@ -1520,4 +1529,8 @@ textarea.input {
   .phone { width: min(260px, 82vw); }
   .export-grid { grid-template-columns: 1fr; }
   .export-grid .btn--wide { grid-column: auto; }
+}
+
+@media (max-width: 340px) {
+  .phone { width: min(250px, 78vw); }
 }
