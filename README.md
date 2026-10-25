@@ -4,6 +4,8 @@ A private, offline emergency contact card you make in your browser. Save it as a
 
 No account, no server, no tracking. The card is drawn locally with HTML, CSS, vanilla JavaScript and the Canvas API.
 
+**Live site:** https://arovex.github.io/ice-card/
+
 ## What it does
 
 - **Lock screen** — a 1170 × 2532 wallpaper with the top 30% and bottom 12% kept clear for the clock, flashlight and camera.
