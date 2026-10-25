@@ -50,3 +50,10 @@ A lock screen is visible to anyone holding the phone. The site warns about risky
 ## A note on safety
 
 This card is a convenience, not a medical record. It is not a medical device and does not call anyone for you. In an emergency, call your local emergency number first. Keep official records up to date and use your phone's built-in Medical ID or emergency information as well.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+Copyright © 2026 arovex.
+
