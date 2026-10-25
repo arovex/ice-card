@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-ui-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy, in plain language · ICE Card</title>
+<meta name="description" content="Exactly what this tool stores, what it never does, and how to delete everything. No accounts, no tracking, no uploads.">
+<meta name="theme-color" content="#f7f3ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1b2e'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23c62828'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  try {
+    var th = localStorage.getItem('ice.theme');
+    if (th) { th = JSON.parse(th); }
+    if (th !== 'dark' && th !== 'light') {
+      th = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-ui-theme', th);
+    var lg = localStorage.getItem('ice.lang');
+    if (lg) {
+      var code = JSON.parse(lg);
+      document.documentElement.lang = code;
+      document.documentElement.dir = code === 'ur' ? 'rtl' : 'ltr';
+    }
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="brand-name">ICE <b>Card</b></span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="create.html" data-i18n="nav.create">Make a card</a>
+      <a href="guide.html" data-i18n="nav.guide">How to use it</a>
+      <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-label="Turn interface sounds on or off" aria-pressed="false" data-muted="false">
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16 9a4.2 4.2 0 0 1 0 6"/><path d="M18.6 6.4a7.8 7.8 0 0 1 0 11.2"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light and dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.2M12 19v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.8 12H5M19 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap page-head">
+    <span class="eyebrow" data-i18n="nav.privacy">Privacy</span>
+    <h1 class="display" data-i18n="privacy.title">Privacy, in plain language</h1>
+    <p class="lead" data-i18n="privacy.lead">This tool is built to keep your information on your own device. Here is exactly what happens, without legal language.</p>
+  </div>
+
+  <div class="wrap doc">
+
+    <div class="callout callout--teal">
+      <strong data-i18n="footer.offline">Works offline · No account · No tracking</strong>
+    </div>
+
+    <h2 id="stored" data-i18n="privacy.storedT">What is stored, and where</h2>
+    <p data-i18n="privacy.storedB">The card is drawn by your browser. If you tick “Remember on this device”, the form is saved in this browser’s local storage — a small private storage area on your device. If you do not tick it, the form lives in memory only and disappears when you close the tab.</p>
+    <ul>
+      <li data-i18n="privacy.storedLi1">Your form fields, stored only if you ask us to remember them.</li>
+      <li data-i18n="privacy.storedLi2">Your theme, sound and language choice, so the site feels the same next time.</li>
+      <li data-i18n="privacy.storedLi3">A saved PNG, only where you save it yourself (photos or downloads).</li>
+    </ul>
+
+    <h2 id="not" data-i18n="privacy.notT">What never happens</h2>
+    <p data-i18n="privacy.notB">There is no backend to send anything to.</p>
+    <ul>
+      <li data-i18n="privacy.notLi1">No accounts, no sign-in, no email.</li>
+      <li data-i18n="privacy.notLi2">No analytics, tracking pixels or advertising.</li>
+      <li data-i18n="privacy.notLi3">No network request carries your card details. The only network request is for optional fonts, which load from Google Fonts without your card data.</li>
+      <li data-i18n="privacy.notLi4">No logs of what you typed.</li>
+    </ul>
+
+    <h2 id="remember" data-i18n="privacy.rememberT">Remember on this device</h2>
+    <p data-i18n="privacy.rememberB">This is off by default. Turn it on only on a device you trust. On a shared or work device, leave it off and the form is forgotten when the tab closes. You can delete everything with one button.</p>
+    <div class="callout">
+      <strong data-i18n="form.rememberLabel">Remember on this device</strong><br>
+      <span data-i18n="form.rememberHint">Saves this form in your browser only. Nothing is sent anywhere. Leave it off on a shared device.</span>
+    </div>
+
+    <h2 id="visible" data-i18n="privacy.visibleT">A lock screen is visible to anyone holding your phone</h2>
+    <p data-i18n="privacy.visibleB">That is the point — but it also means a stranger can read it. Only include what you are comfortable showing. Do not add a home address, a full date of birth, ID numbers, card numbers or passwords. Use a landmark or a partial detail instead.</p>
+
+    <h2 id="accuracy" data-i18n="privacy.accuracyT">A convenience, not a medical record</h2>
+    <p data-i18n="privacy.accuracyB">This card is a convenience, not a medical record. Keep your official records up to date with your doctor, and use your phone’s built-in Medical ID or emergency information as well.</p>
+
+    <h2 id="offline" data-i18n="privacy.offlineT">Works offline</h2>
+    <p data-i18n="privacy.offlineB">Once the page has loaded, everything works without a connection. Fonts fall back to fonts already on your device. You can also save the page to your device and open it later.</p>
+
+    <h2 id="clear" data-i18n="privacy.clearT">Delete everything</h2>
+    <p data-i18n="privacy.clearB">This removes the saved form, theme, sound and language settings from this browser. It cannot be undone, and it does not affect any image you already saved.</p>
+    <button class="btn btn--accent" type="button" data-clear-all data-i18n="privacy.clearBtn">Clear all my data</button>
+
+    <div class="cta-band mt-4">
+      <h2 class="display" data-i18n="home.finalTitle">Ready in three minutes.</h2>
+      <p data-i18n="home.finalBody">Your details stay in your browser. You can change or delete them at any time.</p>
+      <div class="btn-row">
+        <a class="btn btn--accent" href="create.html" data-i18n="home.cta">Make my card</a>
+        <a class="btn btn--ghost" href="guide.html" data-i18n="nav.guide">How to use it</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+          </span>
+          <span class="brand-name">ICE <b>Card</b></span>
+        </a>
+        <p data-i18n="footer.tagline">A calm, private emergency card you make yourself.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.links">Pages</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="create.html" data-i18n="nav.create">Make a card</a></li>
+          <li><a href="guide.html" data-i18n="nav.guide">How to use it</a></li>
+          <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.langLabel">Interface language</h4>
+        <label class="lang-select">
+          <span class="visually-hidden" data-i18n="footer.langLabel">Interface language</span>
+          <select data-lang-select aria-label="Interface language">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+          </select>
+        </label>
+        <ul class="footer-links">
+          <li><button type="button" data-clear-all data-i18n="footer.clear">Clear all my data</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span data-i18n="footer.legal">This card is a convenience, not a medical record. Keep your official records up to date.</span>
+      <span data-i18n="footer.offline">Works offline · No account · No tracking</span>
+    </div>
+  </div>
+</footer>
+
+<div class="page-wipe" aria-hidden="true"></div>
+
+<script src="js/strings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

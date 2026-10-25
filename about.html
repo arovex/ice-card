@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-ui-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About this card · ICE Card</title>
+<meta name="description" content="Why this emergency card exists, how it is built, and what it deliberately never does. Free, offline, no account and no tracking.">
+<meta name="theme-color" content="#f7f3ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1b2e'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23c62828'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  try {
+    var th = localStorage.getItem('ice.theme');
+    if (th) { th = JSON.parse(th); }
+    if (th !== 'dark' && th !== 'light') {
+      th = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-ui-theme', th);
+    var lg = localStorage.getItem('ice.lang');
+    if (lg) {
+      var code = JSON.parse(lg);
+      document.documentElement.lang = code;
+      document.documentElement.dir = code === 'ur' ? 'rtl' : 'ltr';
+    }
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="brand-name">ICE <b>Card</b></span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="create.html" data-i18n="nav.create">Make a card</a>
+      <a href="guide.html" data-i18n="nav.guide">How to use it</a>
+      <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-label="Turn interface sounds on or off" aria-pressed="false" data-muted="false">
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16 9a4.2 4.2 0 0 1 0 6"/><path d="M18.6 6.4a7.8 7.8 0 0 1 0 11.2"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light and dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.2M12 19v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.8 12H5M19 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap page-head">
+    <span class="eyebrow" data-i18n="nav.about">About</span>
+    <h1 class="display" data-i18n="about.title">About this card</h1>
+    <p class="lead" data-i18n="about.lead">A small, free tool for a moment that matters. Here is why it exists, how it is built, and what it deliberately does not do.</p>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#why" data-i18n="about.whyT">Why this exists</a>
+      <a href="#does" data-i18n="about.doesT">What it does</a>
+      <a href="#never" data-i18n="about.neverT">What it never does</a>
+      <a href="#made" data-i18n="about.madeT">How it is made</a>
+      <a href="#not" data-i18n="about.notT">What it is not</a>
+    </nav>
+  </div>
+
+  <div class="wrap doc">
+
+    <div class="callout callout--teal">
+      <strong data-i18n="footer.offline">Works offline · No account · No tracking</strong>
+    </div>
+
+    <h2 id="why" data-i18n="about.whyT">Why this exists</h2>
+    <p data-i18n="about.whyB1">Most of us carry the information a helper needs, but it sits behind a passcode. In an emergency, the people nearby may not be able to unlock your phone, and you may not be able to tell them anything.</p>
+    <p data-i18n="about.whyB2">This site is a simple answer to that gap: a name, one or two phone numbers, and the few medical facts that matter, somewhere they can actually be seen. Not a full medical history — just enough to start the right conversation.</p>
+
+    <h2 id="does" data-i18n="about.doesT">What it does</h2>
+    <p data-i18n="about.doesB">The form takes about three minutes, and every field is optional. From what you enter, the site draws a finished image in your browser.</p>
+    <ul>
+      <li data-i18n="about.doesLi1">A lock-screen wallpaper, with the top and bottom left clear for the clock, flashlight and camera.</li>
+      <li data-i18n="about.doesLi2">A wallet card the size of a credit card, with a front and a back.</li>
+      <li data-i18n="about.doesLi3">An A4 sheet with four front-and-back pairs, for family members or a bag.</li>
+    </ul>
+    <p data-i18n="about.doesB2">You can save a PNG, copy the image, or print the sheet. A card can also include a QR code that carries your contact details as plain text — not a link to a website.</p>
+
+    <h2 id="never" data-i18n="about.neverT">What it never does</h2>
+    <p data-i18n="about.neverB">Nothing you type is sent anywhere. There is no backend, no account system and no analytics.</p>
+    <ul>
+      <li data-i18n="about.neverLi1">No sign-up, no email, no password.</li>
+      <li data-i18n="about.neverLi2">No uploads, no cloud copy, no syncing between devices.</li>
+      <li data-i18n="about.neverLi3">No advertising, no tracking pixels, no profiling.</li>
+      <li data-i18n="about.neverLi4">No request for a bank PIN, card number or password — and the card reminds helpers that a bank will never ask for a PIN.</li>
+      <li data-i18n="about.neverLi5">No pretence that this replaces official records or emergency services.</li>
+    </ul>
+    <p data-i18n="about.neverB2">The only outside request is for the optional fonts. If they do not load, the site falls back to fonts already on your device and everything still works.</p>
+
+    <h2 id="made" data-i18n="about.madeT">How it is made</h2>
+    <p data-i18n="about.madeB">The site is plain HTML, CSS and JavaScript: no framework, no build step, no package manager and no server. The card is drawn with the Canvas API, including the QR code, so it can run from a folder on a computer with no connection at all.</p>
+    <p data-i18n="about.madeB2">Layouts are drawn at print resolution — 1170 × 2532 for a typical lock screen and 2480 × 3508 for A4 — so the text stays sharp on a phone and on paper. The typefaces are Fraunces and Inter; the icons and card artwork are drawn in the page itself.</p>
+
+    <h2 id="access" data-i18n="about.accessT">Made to be read under stress</h2>
+    <p data-i18n="about.accessB">The card favours large type, strong contrast and short lines. Text on the lock-screen layout is at least 28 px at full size, and content that will not fit is shortened or dropped with a warning rather than spilling off the card.</p>
+    <p data-i18n="about.accessB2">The site works with a keyboard, shows a visible focus ring, labels every control, and has light and dark themes. Tap targets are at least 44 px. There is a right-to-left layout for Urdu. Animation uses transform and opacity only, and switches off when your device asks for reduced motion.</p>
+
+    <h2 id="not" data-i18n="about.notT">What it is not</h2>
+    <p data-i18n="about.notB">This card is a convenience, not a medical record. It is not a medical device, and it does not call anyone for you. In an emergency, call your local emergency number first, then use the card to help the people around you.</p>
+    <p data-i18n="about.notB2">Keep your official records up to date with your doctor, and set up your phone’s built-in Medical ID or emergency information as well. Use both if you can.</p>
+
+    <h2 id="help" data-i18n="about.helpT">Corrections and translations</h2>
+    <p data-i18n="about.helpB">This is an independent, non-commercial project. There is nothing to buy, no newsletter and no mailing list. The site does not ask who you are.</p>
+    <p data-i18n="about.helpB2">All interface text lives in one file, js/strings.js, so a correction or a new language can be made in one place. The drawing code is in js/card.js. Everything is readable and can be edited or translated.</p>
+    <p data-i18n="about.helpB3">If a phrase is wrong, unclear, or missing in your language, it can be fixed without changing the layout.</p>
+
+    <div class="cta-band mt-4">
+      <h2 class="display" data-i18n="home.finalTitle">Ready in three minutes.</h2>
+      <p data-i18n="home.finalBody">Your details stay in your browser. You can change or delete them at any time.</p>
+      <div class="btn-row">
+        <a class="btn btn--accent" href="create.html" data-i18n="home.cta">Make my card</a>
+        <a class="btn btn--ghost" href="guide.html" data-i18n="nav.guide">How to use it</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+          </span>
+          <span class="brand-name">ICE <b>Card</b></span>
+        </a>
+        <p data-i18n="footer.tagline">A calm, private emergency card you make yourself.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.links">Pages</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="create.html" data-i18n="nav.create">Make a card</a></li>
+          <li><a href="guide.html" data-i18n="nav.guide">How to use it</a></li>
+          <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.langLabel">Interface language</h4>
+        <label class="lang-select">
+          <span class="visually-hidden" data-i18n="footer.langLabel">Interface language</span>
+          <select data-lang-select aria-label="Interface language">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+          </select>
+        </label>
+        <ul class="footer-links">
+          <li><button type="button" data-clear-all data-i18n="footer.clear">Clear all my data</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span data-i18n="footer.legal">This card is a convenience, not a medical record. Keep your official records up to date.</span>
+      <span data-i18n="footer.offline">Works offline · No account · No tracking</span>
+    </div>
+  </div>
+</footer>
+
+<div class="page-wipe" aria-hidden="true"></div>
+
+<script src="js/strings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

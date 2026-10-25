@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-ui-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use your card · ICE Card</title>
+<meta name="description" content="Step-by-step instructions for setting your emergency card as a lock screen, printing a wallet card, and printing the family sheet.">
+<meta name="theme-color" content="#f7f3ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1b2e'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23c62828'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  try {
+    var th = localStorage.getItem('ice.theme');
+    if (th) { th = JSON.parse(th); }
+    if (th !== 'dark' && th !== 'light') {
+      th = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-ui-theme', th);
+    var lg = localStorage.getItem('ice.lang');
+    if (lg) {
+      var code = JSON.parse(lg);
+      document.documentElement.lang = code;
+      document.documentElement.dir = code === 'ur' ? 'rtl' : 'ltr';
+    }
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="brand-name">ICE <b>Card</b></span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="create.html" data-i18n="nav.create">Make a card</a>
+      <a href="guide.html" data-i18n="nav.guide">How to use it</a>
+      <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-label="Turn interface sounds on or off" aria-pressed="false" data-muted="false">
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16 9a4.2 4.2 0 0 1 0 6"/><path d="M18.6 6.4a7.8 7.8 0 0 1 0 11.2"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light and dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.2M12 19v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.8 12H5M19 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap page-head">
+    <span class="eyebrow" data-i18n="nav.guide">How to use it</span>
+    <h1 class="display" data-i18n="guide.title">How to use your card</h1>
+    <p class="lead" data-i18n="guide.lead">Two places work best: the lock screen and a wallet card. Here is the whole process, including how to get back to your normal wallpaper later.</p>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#lock" data-i18n="guide.lockT">Set it as your lock screen</a>
+      <a href="#wallet" data-i18n="guide.walletT">Print a wallet card</a>
+      <a href="#family" data-i18n="guide.printT">Print the family sheet</a>
+      <a href="#builtin" data-i18n="guide.builtinT">Use your phone’s built-in features too</a>
+      <a href="#faq" data-i18n="guide.faqT">Common questions</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+
+    <section class="guide-section" id="lock" data-reveal>
+      <div class="guide-grid">
+        <div>
+          <span class="eyebrow" data-i18n="form.previewLock">Lock screen</span>
+          <h2 data-i18n="guide.lockT">Set it as your lock screen</h2>
+          <p class="lead" data-i18n="guide.lockLead">This is the version most people see first. Keep it on your phone’s lock screen and the card is visible without unlocking.</p>
+          <ol class="numbered">
+            <li data-i18n="guide.lock1">On this site, choose Lock screen, then Save as image.</li>
+            <li data-i18n="guide.lock2">Save the PNG to your photos. The top 30% stays clear for the clock, and the bottom 12% for the flashlight and camera buttons.</li>
+            <li data-i18n="guide.lock3">iPhone: Settings → Wallpaper → Add New Wallpaper → Photos → choose the card. Turn off depth effect and “Perspective zoom” so the text stays sharp.</li>
+            <li data-i18n="guide.lock4">Android: Photos → the card → More → Set as wallpaper → Lock screen. Choose “no motion” if offered.</li>
+            <li data-i18n="guide.lock5">Check it once with the screen locked: can you read the name and the first phone number without squinting?</li>
+          </ol>
+        </div>
+        <aside class="panel pad aside-card">
+          <h3>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+            <span data-i18n="form.previewGuide">Show safe zones</span>
+          </h3>
+          <p data-i18n="guide.lockTip">To go back, set your original photo as the wallpaper again. Your normal wallpaper is not deleted by this card.</p>
+          <ul>
+            <li data-i18n="form.previewGuideTop">Clock and notifications</li>
+            <li data-i18n="form.previewGuideBottom">Flashlight and camera</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="guide-section" id="wallet" data-reveal>
+      <div class="guide-grid">
+        <div>
+          <span class="eyebrow" data-i18n="form.previewWallet">Wallet</span>
+          <h2 data-i18n="guide.walletT">Print a wallet card</h2>
+          <p class="lead" data-i18n="guide.walletLead">Paper does not run out of battery. A folded card also helps if your phone is damaged or locked away from you.</p>
+          <ol class="numbered">
+            <li data-i18n="guide.wallet1">Choose Wallet, check the front and back, then Print sheet.</li>
+            <li data-i18n="guide.wallet2">In the print dialog choose A4, 100% scale, and turn off headers and footers.</li>
+            <li data-i18n="guide.wallet3">Cut along the dashed lines. Put the front and back of a pair back to back, then trim the corners.</li>
+            <li data-i18n="guide.wallet4">A5 or Letter also works — the sheet scales, but check the cut lines before cutting.</li>
+          </ol>
+        </div>
+        <aside class="panel pad aside-card">
+          <h3>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 13h10v8H7z"/></svg>
+            <span data-i18n="form.exportPrint">Print sheet</span>
+          </h3>
+          <p data-i18n="guide.walletTip">Print two copies: one for your wallet, one for a family member or your bag.</p>
+          <p class="small" data-i18n="form.exportPrintTip">Tip: Sunrise and Clinic use the least ink. Print at 100% scale, without "fit to page".</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="guide-section" id="family" data-reveal>
+      <div class="guide-grid">
+        <div>
+          <span class="eyebrow" data-i18n="form.previewPrint">Print sheet</span>
+          <h2 data-i18n="guide.printT">Print the family sheet</h2>
+          <p class="lead" data-i18n="guide.printLead">The print sheet lays out four front-and-back pairs on one A4 page, so you can give copies to family members.</p>
+          <ol class="numbered">
+            <li data-i18n="guide.print1">Fill in the card once, then choose Print sheet.</li>
+            <li data-i18n="guide.print2">Print at 100%. Each pair is credit-card sized (85.6 × 54 mm).</li>
+            <li data-i18n="guide.print3">Cut out each pair, fold or glue front to back, and write the person’s name on the back if you like.</li>
+            <li data-i18n="guide.print4">Laminate or use a clear sleeve for a card that survives a wallet.</li>
+          </ol>
+        </div>
+        <aside class="panel pad aside-card">
+          <h3>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-3-6 3V3z"/></svg>
+            <span data-i18n="card.printTitle">Emergency contact cards</span>
+          </h3>
+          <p data-i18n="guide.printTip">For a PDF, use “Save as PDF” in the print dialog. It is the same page, with no extra software.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="guide-section" id="builtin" data-reveal>
+      <div class="panel pad teal-card">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6v5M9.6 6.1h4.8"/><path d="M4.8 20.6c0-4 3.2-6.6 7.2-6.6s7.2 2.6 7.2 6.6"/><circle cx="12" cy="10.6" r="3.4"/></svg>
+          <span data-i18n="guide.builtinT">Use your phone’s built-in features too</span>
+        </h3>
+        <p data-i18n="guide.builtinB">iPhone has Medical ID (Health app → Medical ID) and Android has Emergency information (Settings → Safety &amp; emergency). They can be shown from the lock screen and can include emergency calls. This card is a simple backup — use both if you can.</p>
+      </div>
+    </section>
+
+    <section class="guide-section" id="faq" data-reveal>
+      <h2 data-i18n="guide.faqT">Common questions</h2>
+      <div class="faq">
+        <details>
+          <summary data-i18n="guide.q1">Is my information uploaded anywhere?</summary>
+          <p data-i18n="guide.a1">No. Everything is drawn in your browser. There is no server, no account and no analytics. The only copy is the one you save yourself.</p>
+        </details>
+        <details>
+          <summary data-i18n="guide.q2">What if I lose the printed card?</summary>
+          <p data-i18n="guide.a2">Nothing is stored on the paper except what you chose to print. Make a new one in three minutes, or keep a photo of the card in your bag.</p>
+        </details>
+        <details>
+          <summary data-i18n="guide.q3">Will the text be readable on a small phone?</summary>
+          <p data-i18n="guide.a3">The lock-screen layout leaves the top 30% for the clock and the bottom 12% for the camera and flashlight. Text is at least 28 px at that size. Check it once on your own phone before relying on it.</p>
+        </details>
+        <details>
+          <summary data-i18n="guide.q4">Can I make cards for my family?</summary>
+          <p data-i18n="guide.a4">Yes — the print sheet lays out four pairs. For different people, fill in the form again and print a second sheet, or save separate PNGs.</p>
+        </details>
+      </div>
+
+      <div class="cta-band mt-4">
+        <h2 class="display" data-i18n="home.finalTitle">Ready in three minutes.</h2>
+        <p data-i18n="home.finalBody">Your details stay in your browser. You can change or delete them at any time.</p>
+        <div class="btn-row">
+          <a class="btn btn--accent" href="create.html" data-i18n="home.cta">Make my card</a>
+          <a class="btn btn--ghost" href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+          </span>
+          <span class="brand-name">ICE <b>Card</b></span>
+        </a>
+        <p data-i18n="footer.tagline">A calm, private emergency card you make yourself.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.links">Pages</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="create.html" data-i18n="nav.create">Make a card</a></li>
+          <li><a href="guide.html" data-i18n="nav.guide">How to use it</a></li>
+          <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.langLabel">Interface language</h4>
+        <label class="lang-select">
+          <span class="visually-hidden" data-i18n="footer.langLabel">Interface language</span>
+          <select data-lang-select aria-label="Interface language">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+          </select>
+        </label>
+        <ul class="footer-links">
+          <li><button type="button" data-clear-all data-i18n="footer.clear">Clear all my data</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span data-i18n="footer.legal">This card is a convenience, not a medical record. Keep your official records up to date.</span>
+      <span data-i18n="footer.offline">Works offline · No account · No tracking</span>
+    </div>
+  </div>
+</footer>
+
+<div class="page-wipe" aria-hidden="true"></div>
+
+<script src="js/strings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

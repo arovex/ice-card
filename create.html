@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-ui-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make your card · ICE Card</title>
+<meta name="description" content="Build a private emergency contact card for your lock screen or wallet. Works offline, nothing is uploaded.">
+<meta name="theme-color" content="#f7f3ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1b2e'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23c62828'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  try {
+    var th = localStorage.getItem('ice.theme');
+    if (th) { th = JSON.parse(th); }
+    if (th !== 'dark' && th !== 'light') {
+      th = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-ui-theme', th);
+    var lg = localStorage.getItem('ice.lang');
+    if (lg) {
+      var code = JSON.parse(lg);
+      document.documentElement.lang = code;
+      document.documentElement.dir = code === 'ur' ? 'rtl' : 'ltr';
+    }
+  } catch (e) {}
+})();
+</script>
+</head>
+<body class="page-create">
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="brand-name">ICE <b>Card</b></span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="create.html" data-i18n="nav.create">Make a card</a>
+      <a href="guide.html" data-i18n="nav.guide">How to use it</a>
+      <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-sound-toggle aria-label="Turn interface sounds on or off" aria-pressed="false" data-muted="false">
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16 9a4.2 4.2 0 0 1 0 6"/><path d="M18.6 6.4a7.8 7.8 0 0 1 0 11.2"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light and dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.2M12 19v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.8 12H5M19 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap create-head">
+    <span class="eyebrow" data-i18n="home.eyebrow">Private · Offline · No account</span>
+    <h1 class="display" data-i18n="form.title">Make your card</h1>
+    <p class="lead" data-i18n="form.lead">Fill in what you are comfortable sharing. Every field is optional, and the preview updates as you type.</p>
+    <p class="callout callout--accent small mt-3">
+      <strong data-i18n="home.warnTitle">A lock screen is visible to anyone holding your phone</strong><br>
+      <span data-i18n="home.warnBody">Only include what you are comfortable showing a stranger. Never add a home address, full date of birth, ID or card numbers. Keep your official medical records up to date too.</span>
+    </p>
+  </div>
+
+  <div class="wrap create-shell">
+
+    <div class="form-col">
+
+      <div class="progress-wrap">
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Card progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="progress-text" id="progressText" aria-live="polite">0%</span>
+      </div>
+
+      <form id="cardForm" novalidate autocomplete="off">
+
+        <!-- Step 1 -->
+        <div class="steps">
+          <section class="step" data-open="true" data-complete="false">
+            <h2 class="step-h">
+              <button class="step-toggle" type="button" aria-expanded="true" aria-controls="step1Body">
+                <span class="step-num" aria-hidden="true">1</span>
+                <span>
+                  <span class="step-title" data-i18n="form.step1">About me</span>
+                  <span class="step-desc" data-i18n="form.step1d">Who this card belongs to.</span>
+                </span>
+                <svg class="step-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h2>
+            <div class="step-body" id="step1Body">
+              <div>
+                <div class="step-inner">
+                  <div class="field">
+                    <label for="cardName">
+                      <span data-i18n="form.nameLabel">Name</span>
+                      <span class="optional" data-i18n="common.optional">Optional</span>
+                    </label>
+                    <input class="input" id="cardName" name="name" type="text" maxlength="60" autocomplete="name" data-i18n-placeholder="form.namePh" placeholder="e.g. Ayesha Khan">
+                    <p class="hint" data-i18n="form.nameHint">A first name and last initial is often enough.</p>
+                  </div>
+
+                  <div class="field">
+                    <span class="field-label">
+                      <span data-i18n="form.avatarLabel">Avatar</span>
+                      <span class="optional" data-i18n="common.optional">Optional</span>
+                    </span>
+                    <div class="avatar-row">
+                      <span class="avatar-preview" id="avatarPreview" aria-hidden="true"></span>
+                      <div class="emoji-set" role="group" aria-label="Avatar emoji">
+                        <button class="emoji-btn" type="button" data-emoji="🧑" aria-pressed="false">🧑</button>
+                        <button class="emoji-btn" type="button" data-emoji="👩" aria-pressed="false">👩</button>
+                        <button class="emoji-btn" type="button" data-emoji="👨" aria-pressed="false">👨</button>
+                        <button class="emoji-btn" type="button" data-emoji="🧕" aria-pressed="false">🧕</button>
+                        <button class="emoji-btn" type="button" data-emoji="👵" aria-pressed="false">👵</button>
+                        <button class="emoji-btn" type="button" data-emoji="👴" aria-pressed="false">👴</button>
+                        <button class="emoji-btn" type="button" data-emoji="🧒" aria-pressed="false">🧒</button>
+                        <button class="emoji-btn" type="button" data-emoji="💙" aria-pressed="false">💙</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="btn btn--soft btn--sm file-btn">
+                        <span data-i18n="form.avatarPhoto">Photo</span>
+                        <input type="file" id="avatarPhoto" accept="image/*" aria-label="Choose a photo">
+                      </label>
+                      <button class="btn btn--ghost btn--sm" type="button" id="avatarClear" data-i18n="form.avatarRemove">No avatar</button>
+                    </div>
+                    <p class="hint" data-i18n="form.avatarHint">A photo is resized in your browser and never uploaded.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="spokenLanguage">
+                      <span data-i18n="form.spokenLabel">Preferred language</span>
+                      <span class="optional" data-i18n="common.optional">Optional</span>
+                    </label>
+                    <input class="input" id="spokenLanguage" name="spokenLanguage" type="text" maxlength="40" data-i18n-placeholder="form.spokenPh" placeholder="e.g. English, اردو, العربية">
+                    <p class="hint" data-i18n="form.spokenHint">Helps a helper find someone who speaks it.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 2 -->
+          <section class="step" data-open="false" data-complete="false">
+            <h2 class="step-h">
+              <button class="step-toggle" type="button" aria-expanded="false" aria-controls="step2Body">
+                <span class="step-num" aria-hidden="true">2</span>
+                <span>
+                  <span class="step-title" data-i18n="form.step2">Emergency contacts</span>
+                  <span class="step-desc" data-i18n="form.step2d">Who to call, in order.</span>
+                </span>
+                <svg class="step-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h2>
+            <div class="step-body" id="step2Body">
+              <div>
+                <div class="step-inner">
+                  <div class="contact-box">
+                    <div class="contact-head">
+                      <span class="contact-title" data-i18n="form.contactN" data-i18n-n="1">Contact 1</span>
+                      <label class="radio-pill">
+                        <input type="radio" name="callFirst" value="0" checked>
+                        <span data-i18n="form.contactFirst">Call first</span>
+                      </label>
+                    </div>
+                    <div class="field-grid field-grid--2">
+                      <div class="field">
+                        <label for="c1Name" data-i18n="form.nameLabel">Name</label>
+                        <input class="input" id="c1Name" type="text" maxlength="50" autocomplete="off" data-i18n-placeholder="form.contactNamePh" placeholder="e.g. Bilal Khan">
+                      </div>
+                      <div class="field">
+                        <label for="c1Rel" data-i18n="form.relLabel">Relationship</label>
+                        <input class="input" id="c1Rel" type="text" maxlength="30" autocomplete="off" data-i18n-placeholder="form.contactRelPh" placeholder="Relationship (e.g. husband)">
+                      </div>
+                      <div class="field col-span">
+                        <label for="c1Phone" data-i18n="form.phoneLabel">Phone</label>
+                        <input class="input" id="c1Phone" type="tel" inputmode="tel" maxlength="30" autocomplete="off" aria-describedby="c1PhoneErr" data-i18n-placeholder="form.contactPhonePh" placeholder="Phone (e.g. +92 300 1234567)">
+                        <p class="error-text" id="c1PhoneErr" aria-live="polite"></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contact-box">
+                    <div class="contact-head">
+                      <span class="contact-title" data-i18n="form.contactN" data-i18n-n="2">Contact 2</span>
+                      <label class="radio-pill">
+                        <input type="radio" name="callFirst" value="1">
+                        <span data-i18n="form.contactFirst">Call first</span>
+                      </label>
+                    </div>
+                    <div class="field-grid field-grid--2">
+                      <div class="field">
+                        <label for="c2Name" data-i18n="form.nameLabel">Name</label>
+                        <input class="input" id="c2Name" type="text" maxlength="50" autocomplete="off" data-i18n-placeholder="form.contactNamePh" placeholder="e.g. Bilal Khan">
+                      </div>
+                      <div class="field">
+                        <label for="c2Rel" data-i18n="form.relLabel">Relationship</label>
+                        <input class="input" id="c2Rel" type="text" maxlength="30" autocomplete="off" data-i18n-placeholder="form.contactRelPh" placeholder="Relationship (e.g. sister)">
+                      </div>
+                      <div class="field col-span">
+                        <label for="c2Phone" data-i18n="form.phoneLabel">Phone</label>
+                        <input class="input" id="c2Phone" type="tel" inputmode="tel" maxlength="30" autocomplete="off" aria-describedby="c2PhoneErr" data-i18n-placeholder="form.contactPhonePh" placeholder="Phone (e.g. +92 300 1234567)">
+                        <p class="error-text" id="c2PhoneErr" aria-live="polite"></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contact-box">
+                    <div class="contact-head">
+                      <span class="contact-title" data-i18n="form.contactN" data-i18n-n="3">Contact 3</span>
+                      <label class="radio-pill">
+                        <input type="radio" name="callFirst" value="2">
+                        <span data-i18n="form.contactFirst">Call first</span>
+                      </label>
+                    </div>
+                    <div class="field-grid field-grid--2">
+                      <div class="field">
+                        <label for="c3Name" data-i18n="form.nameLabel">Name</label>
+                        <input class="input" id="c3Name" type="text" maxlength="50" autocomplete="off" data-i18n-placeholder="form.contactNamePh" placeholder="e.g. Bilal Khan">
+                      </div>
+                      <div class="field">
+                        <label for="c3Rel" data-i18n="form.relLabel">Relationship</label>
+                        <input class="input" id="c3Rel" type="text" maxlength="30" autocomplete="off" data-i18n-placeholder="form.contactRelPh" placeholder="Relationship (e.g. friend)">
+                      </div>
+                      <div class="field col-span">
+                        <label for="c3Phone" data-i18n="form.phoneLabel">Phone</label>
+                        <input class="input" id="c3Phone" type="tel" inputmode="tel" maxlength="30" autocomplete="off" aria-describedby="c3PhoneErr" data-i18n-placeholder="form.contactPhonePh" placeholder="Phone (e.g. +92 300 1234567)">
+                        <p class="error-text" id="c3PhoneErr" aria-live="polite"></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="hint" data-i18n="form.contactFirstHint">This contact is shown larger, with a phone icon.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 3 -->
+          <section class="step" data-open="false" data-complete="false">
+            <h2 class="step-h">
+              <button class="step-toggle" type="button" aria-expanded="false" aria-controls="step3Body">
+                <span class="step-num" aria-hidden="true">3</span>
+                <span>
+                  <span class="step-title" data-i18n="form.step3">Medical</span>
+                  <span class="step-desc" data-i18n="form.step3d">Only what a helper needs to know.</span>
+                </span>
+                <svg class="step-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h2>
+            <div class="step-body" id="step3Body">
+              <div>
+                <div class="step-inner">
+                  <div class="field-grid field-grid--2">
+                    <div class="field">
+                      <label for="bloodType" data-i18n="form.bloodLabel">Blood type</label>
+                      <select class="input select" id="bloodType" aria-describedby="bloodHelp">
+                        <option value="" data-i18n="form.bloodPh">Choose if you know it</option>
+                        <option value="A+">A+</option>
+                        <option value="A−">A−</option>
+                        <option value="B+">B+</option>
+                        <option value="B−">B−</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB−">AB−</option>
+                        <option value="O+">O+</option>
+                        <option value="O−">O−</option>
+                      </select>
+                      <span class="visually-hidden" id="bloodHelp">Optional. Never guess a blood type.</span>
+                    </div>
+                    <div class="field">
+                      <label for="organDonor" data-i18n="form.donorLabel">Organ donor</label>
+                      <select class="input select" id="organDonor">
+                        <option value="" data-i18n="form.donorPh">Prefer not to say</option>
+                        <option value="yes" data-i18n="common.yes">Yes</option>
+                        <option value="no" data-i18n="common.no">No</option>
+                      </select>
+                    </div>
+                    <div class="field col-span">
+                      <label for="allergies" data-i18n="form.allergiesLabel">Allergies</label>
+                      <input class="input" id="allergies" type="text" maxlength="90" data-i18n-placeholder="form.allergiesPh" placeholder="e.g. Penicillin, peanuts">
+                    </div>
+                    <div class="field col-span">
+                      <label for="medications" data-i18n="form.medsLabel">Medications</label>
+                      <input class="input" id="medications" type="text" maxlength="90" data-i18n-placeholder="form.medsPh" placeholder="e.g. Insulin, 10 units at night">
+                    </div>
+                    <div class="field col-span">
+                      <label for="conditions" data-i18n="form.conditionsLabel">Conditions</label>
+                      <input class="input" id="conditions" type="text" maxlength="90" data-i18n-placeholder="form.conditionsPh" placeholder="e.g. Type 1 diabetes, asthma">
+                    </div>
+                    <div class="field col-span">
+                      <label for="doctor" data-i18n="form.doctorLabel">Doctor or hospital</label>
+                      <input class="input" id="doctor" type="text" maxlength="90" data-i18n-placeholder="form.doctorPh" placeholder="e.g. City Hospital, Dr Ali">
+                    </div>
+                  </div>
+                  <p class="hint" data-i18n="card.notRecord">Emergency contact card · Not a medical record</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 4 -->
+          <section class="step" data-open="false" data-complete="false">
+            <h2 class="step-h">
+              <button class="step-toggle" type="button" aria-expanded="false" aria-controls="step4Body">
+                <span class="step-num" aria-hidden="true">4</span>
+                <span>
+                  <span class="step-title" data-i18n="form.step4">Money and accounts</span>
+                  <span class="step-desc" data-i18n="form.step4d">Card hotlines you want listed.</span>
+                </span>
+                <svg class="step-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h2>
+            <div class="step-body" id="step4Body">
+              <div>
+                <div class="step-inner">
+                  <div class="contact-box">
+                    <span class="contact-title" data-i18n="form.bankEntry" data-i18n-n="1">Hotline 1</span>
+                    <div class="field-grid field-grid--2">
+                      <div class="field">
+                        <label for="bank1Label" data-i18n="form.bankNamePh">Bank or card name</label>
+                        <input class="input" id="bank1Label" type="text" maxlength="40" data-i18n-placeholder="form.bankNamePh" placeholder="Bank or card name">
+                      </div>
+                      <div class="field">
+                        <label for="bank1Phone" data-i18n="form.bankPhonePh">Hotline number</label>
+                        <input class="input" id="bank1Phone" type="tel" inputmode="tel" maxlength="30" data-i18n-placeholder="form.bankPhonePh" placeholder="Hotline number">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contact-box">
+                    <span class="contact-title" data-i18n="form.bankEntry" data-i18n-n="2">Hotline 2</span>
+                    <div class="field-grid field-grid--2">
+                      <div class="field">
+                        <label for="bank2Label" data-i18n="form.bankNamePh">Bank or card name</label>
+                        <input class="input" id="bank2Label" type="text" maxlength="40" data-i18n-placeholder="form.bankNamePh" placeholder="Bank or card name">
+                      </div>
+                      <div class="field">
+                        <label for="bank2Phone" data-i18n="form.bankPhonePh">Hotline number</label>
+                        <input class="input" id="bank2Phone" type="tel" inputmode="tel" maxlength="30" data-i18n-placeholder="form.bankPhonePh" placeholder="Hotline number">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="callout callout--teal small">
+                    <strong data-i18n="form.bankPin">My bank will never ask for my PIN or a code by phone.</strong><br>
+                    <span data-i18n="form.bankHint">Only add numbers you would be happy for a stranger to read. Never add card numbers or PINs.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 5 -->
+          <section class="step" data-open="false" data-complete="false">
+            <h2 class="step-h">
+              <button class="step-toggle" type="button" aria-expanded="false" aria-controls="step5Body">
+                <span class="step-num" aria-hidden="true">5</span>
+                <span>
+                  <span class="step-title" data-i18n="form.step5">Notes</span>
+                  <span class="step-desc" data-i18n="form.step5d">One short line.</span>
+                </span>
+                <svg class="step-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h2>
+            <div class="step-body" id="step5Body">
+              <div>
+                <div class="step-inner">
+                  <div class="field">
+                    <label for="notes">
+                      <span data-i18n="form.notesLabel">One line of notes</span>
+                      <span class="optional" data-i18n="common.optional">Optional</span>
+                    </label>
+                    <input class="input" id="notes" type="text" maxlength="110" data-i18n-placeholder="form.notesPh" placeholder="e.g. I wear a hearing aid in my left ear">
+                    <p class="hint" data-i18n="form.notesHint">Keep it short — one line fits best.</p>
+                  </div>
+
+                  <label class="check-row">
+                    <input type="checkbox" id="rememberDevice">
+                    <span>
+                      <strong data-i18n="form.rememberLabel">Remember on this device</strong>
+                      <span class="small" data-i18n="form.rememberHint">Saves this form in your browser only. Nothing is sent anywhere. Leave it off on a shared device.</span>
+                    </span>
+                  </label>
+
+                  <div class="row">
+                    <button class="btn btn--ghost btn--sm" type="button" data-clear-all data-i18n="form.clearLabel">Clear all my data</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </form>
+
+      <aside class="privacy-check mt-4" id="privacyCheck" aria-live="polite"></aside>
+
+      <p class="hint mt-3" data-i18n="card.notRecord">Emergency contact card · Not a medical record</p>
+    </div>
+
+    <!-- Preview -->
+    <aside class="preview-col" data-open="false">
+      <button class="drawer-handle" id="drawerHandle" type="button" aria-expanded="false" aria-controls="previewBody">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span data-i18n="form.previewTitle">Live preview</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+      </button>
+
+      <div class="preview-body" id="previewBody">
+        <div class="panel preview-panel">
+          <div class="preview-head">
+            <h2><span class="live-dot" aria-hidden="true"></span><span data-i18n="form.previewTitle">Live preview</span></h2>
+            <span class="tiny muted" data-i18n="form.progressHint">Progress only counts what you have filled in.</span>
+          </div>
+
+          <div class="canvas-stage">
+            <div class="canvas-holder" id="canvasHolder">
+              <canvas class="preview-canvas" id="previewCanvas" data-layout="lock" role="img" aria-label="Preview of your emergency card"></canvas>
+              <div class="guide-layer" id="guideLayer" aria-hidden="true">
+                <div class="guide-band guide-band--top"><span data-i18n="form.previewGuideTop">Clock and notifications</span></div>
+                <div class="guide-band guide-band--bottom"><span data-i18n="form.previewGuideBottom">Flashlight and camera</span></div>
+              </div>
+              <div class="call-pulse" id="callPulse" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="preview-options">
+            <div>
+              <span class="field-label" id="layoutLabel" data-i18n="form.layoutLabel">Card layout</span>
+              <div class="segmented" role="tablist" aria-labelledby="layoutLabel">
+                <button type="button" role="tab" data-layout="lock" aria-selected="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
+                  <span data-i18n="form.previewLock">Lock screen</span>
+                </button>
+                <button type="button" role="tab" data-layout="wallet" aria-selected="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M2.5 10h19"/></svg>
+                  <span data-i18n="form.previewWallet">Wallet</span>
+                </button>
+                <button type="button" role="tab" data-layout="print" aria-selected="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 13h10v8H7z"/></svg>
+                  <span data-i18n="form.previewPrint">Print sheet</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="sideControls" hidden>
+              <span class="field-label" data-i18n="form.previewFlip">Flip the wallet card</span>
+              <div class="segmented">
+                <button type="button" data-side="front" aria-pressed="true"><span data-i18n="form.previewFront">Front</span></button>
+                <button type="button" data-side="back" aria-pressed="false"><span data-i18n="form.previewBack">Back</span></button>
+              </div>
+            </div>
+
+            <div>
+              <span class="field-label" data-i18n="form.themeLabel">Card theme</span>
+              <div class="theme-set" role="group" aria-labelledby="themeLabel">
+                <button class="theme-opt" type="button" data-theme-opt="daylight" aria-pressed="true">
+                  <span class="theme-swatch" style="background:radial-gradient(circle at 84% 14%,#ffd79a 0%,rgba(255,215,154,0) 58%),radial-gradient(circle at 12% 6%,#ffe6a8 0%,rgba(255,230,168,0) 52%),linear-gradient(145deg,#fffaf0 0%,#ffe9d2 58%,#ffc9a6 100%)">
+                    <i style="background:#0e1b2e"></i><i style="background:#b3261e"></i><i style="background:#0b6b66"></i>
+                  </span>
+                  <span class="theme-name" data-i18n="form.themeDaylight">Sunrise</span>
+                </button>
+                <button class="theme-opt" type="button" data-theme-opt="midnight" aria-pressed="false">
+                  <span class="theme-swatch" style="background:radial-gradient(circle at 22% 8%,#1c6f83 0%,rgba(28,111,131,0) 62%),radial-gradient(circle at 90% 20%,#2c3f9e 0%,rgba(44,63,158,0) 58%),linear-gradient(152deg,#04080f 0%,#081627 55%,#0d2036 100%)">
+                    <i style="background:#f4f8fd"></i><i style="background:#5fd6c8"></i><i style="background:#ff7b72"></i>
+                  </span>
+                  <span class="theme-name" data-i18n="form.themeMidnight">Midnight</span>
+                </button>
+                <button class="theme-opt" type="button" data-theme-opt="calm" aria-pressed="false">
+                  <span class="theme-swatch" style="background:radial-gradient(circle at 86% 12%,#9fdcc6 0%,rgba(159,220,198,0) 60%),radial-gradient(circle at 12% 24%,#ffe3c6 0%,rgba(255,227,198,0) 52%),linear-gradient(145deg,#eef8f3 0%,#dcefe7 58%,#c9e5dc 100%)">
+                    <i style="background:#0a2b29"></i><i style="background:#2f7d6b"></i><i style="background:#b3261e"></i>
+                  </span>
+                  <span class="theme-name" data-i18n="form.themeCalm">Sage</span>
+                </button>
+                <button class="theme-opt" type="button" data-theme-opt="medical" aria-pressed="false">
+                  <span class="theme-swatch" style="background:linear-gradient(#b3121c,#b3121c) top/100% 4px no-repeat,radial-gradient(circle at 84% 10%,#ffd2cd 0%,rgba(255,210,205,0) 58%),linear-gradient(145deg,#ffffff 0%,#fff7f6 58%,#ffeceb 100%)">
+                    <i style="background:#121212"></i><i style="background:#b3121c"></i><i style="background:#cf2b33"></i>
+                  </span>
+                  <span class="theme-name" data-i18n="form.themeMedical">Clinic</span>
+                </button>
+              </div>
+            </div>
+
+            <label class="switch" id="guideRow">
+              <input type="checkbox" id="guideToggle" checked>
+              <span class="switch-track" aria-hidden="true"></span>
+              <span data-i18n="form.previewGuide">Show safe zones</span>
+            </label>
+
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="qrToggle" checked>
+                <span class="switch-track" aria-hidden="true"></span>
+                <span data-i18n="form.qrLabel">Add a QR code</span>
+              </label>
+              <p class="hint mt-2" data-i18n="form.qrHint">Encodes your contact details as plain text, not a website link. Generated on your device.</p>
+            </div>
+
+            <p class="fit-msg" id="fitMsg" data-state="ok" role="status" aria-live="polite"></p>
+
+            <div>
+              <span class="field-label" data-i18n="form.exportTitle">Save and use it</span>
+              <div class="export-grid mt-2">
+                <button class="btn btn--accent btn--wide" id="saveBtn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4.5 20.5h15"/></svg>
+                  <span data-i18n="form.exportSave">Save as image</span>
+                </button>
+                <button class="btn btn--soft" id="copyBtn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 5.5A2.5 2.5 0 0 0 12.5 3h-6A2.5 2.5 0 0 0 4 5.5v6A2.5 2.5 0 0 0 6.5 14"/></svg>
+                  <span data-i18n="form.exportCopy">Copy image</span>
+                </button>
+                <button class="btn btn--soft" id="printBtn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 13h10v8H7z"/></svg>
+                  <span data-i18n="form.exportPrint">Print sheet</span>
+                </button>
+              </div>
+              <p class="hint mt-2" data-i18n="form.exportPdfNote">For a PDF, choose “Save as PDF” in your browser’s print dialog. No extra software is used.</p>
+            </div>
+
+            <div class="result" id="resultBox" data-show="false">
+              <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                <span data-i18n="form.exportSavedTitle">Your card is ready</span>
+              </h3>
+              <div class="result-img-wrap"><img id="resultImg" alt=""></div>
+              <p data-i18n="form.exportHold">Press and hold the image (or right-click) and choose “Save image”. This always works, even when automatic downloads are blocked.</p>
+              <div class="result-actions">
+                <a class="btn btn--soft btn--sm" id="resultDownload" href="#" download>
+                  <span data-i18n="form.exportDownload">Download PNG</span>
+                </a>
+                <button class="btn btn--ghost btn--sm" id="resultShare" type="button" hidden>
+                  <span data-i18n="form.exportShare">Share…</span>
+                </button>
+              </div>
+            </div>
+
+            <p class="preview-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 19 6v5.6c0 4.4-3 7.6-7 9.2-4-1.6-7-4.8-7-9.2V6l7-2.8z"/></svg>
+              <span data-i18n="form.exportPrintTip">Tip: Sunrise and Clinic use the least ink. Print at 100% scale, without "fit to page".</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div class="preview-scrim" id="previewScrim" data-show="false" aria-hidden="true"></div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+          </span>
+          <span class="brand-name">ICE <b>Card</b></span>
+        </a>
+        <p data-i18n="footer.tagline">A calm, private emergency card you make yourself.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.links">Pages</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="create.html" data-i18n="nav.create">Make a card</a></li>
+          <li><a href="guide.html" data-i18n="nav.guide">How to use it</a></li>
+          <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.langLabel">Interface language</h4>
+        <label class="lang-select">
+          <span class="visually-hidden" data-i18n="footer.langLabel">Interface language</span>
+          <select data-lang-select aria-label="Interface language">
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+          </select>
+        </label>
+        <ul class="footer-links">
+          <li><button type="button" data-clear-all data-i18n="footer.clear">Clear all my data</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span data-i18n="footer.legal">This card is a convenience, not a medical record. Keep your official records up to date.</span>
+      <span data-i18n="footer.offline">Works offline · No account · No tracking</span>
+    </div>
+  </div>
+</footer>
+
+<div class="page-wipe" aria-hidden="true"></div>
+<canvas id="printCanvas" class="print-only" aria-hidden="true"></canvas>
+
+<script src="js/strings.js"></script>
+<script src="js/app.js"></script>
+<script src="js/card.js"></script>
+<script src="js/create.js"></script>
+</body>
+</html>
