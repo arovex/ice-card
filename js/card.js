@@ -1012,7 +1012,8 @@
     var nameH = lines.length * nameLH;
     var speaks = str(data.spokenLanguage);
     var speaksText = speaks ? t('card.speaks', { lang: speaks }) : '';
-    var speaksH = speaksText ? sz.small * 1.5 : 0;
+    var speaksGap = speaksText ? Math.round(sz.small * 0.6) : 0;
+    var speaksH = speaksText ? sz.small * 1.5 + speaksGap : 0;
     var overH = opts.overline ? Math.round(sz.overline * 2) : 0;
     var h = overH + Math.max(avSize, nameH + speaksH) + Math.round(sz.gap * 0.6);
 
@@ -1025,7 +1026,8 @@
         var align = rtl ? 'right' : 'left';
         var top = y + overH;
         if (opts.overline) {
-          paintText(ctx2, t('brand.tagline').toUpperCase(), anchor, top + sz.overline * 0.86, {
+          // Keep the overline in its reserved band, above the avatar and name.
+          paintText(ctx2, t('brand.tagline').toUpperCase(), anchor, y + sz.overline * 0.86, {
             size: sz.overline, weight: 700, color: th.accent, align: align
           });
         }
@@ -1042,7 +1044,7 @@
           family: DISPLAY, align: align, lineH: nameLH
         });
         if (speaksText) {
-          paintText(ctx2, speaksText, textAnchor, textTop + nameH + sz.small * 1.05, {
+          paintText(ctx2, speaksText, textAnchor, textTop + nameH + speaksGap + sz.small * 1.05, {
             size: sz.small, weight: 500, color: th.muted, align: align
           });
         }
